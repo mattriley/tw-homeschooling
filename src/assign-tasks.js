@@ -12,6 +12,6 @@ module.exports = (tasks, childCount) => {
         if (!buckets.length) return buckets;
         const bucketIndex = buckets.findIndex(b => sumPoints(b) + task.points <= pointsPerChild);
         if (bucketIndex === -1) return [];
-        return Object.assign([], buckets, { [bucketIndex]: [...buckets[bucketIndex], task] });
+        return Object.assign([], buckets, { [bucketIndex]: buckets[bucketIndex].concat(task) });
     }, emptyBuckets);
 };
