@@ -24,7 +24,7 @@ test('assigns tasks using example in problem statement', t => {
     t.end();
 });
 
-test.only('tasks cannot be evenly assigned', t => {
+test('tasks cannot be evenly assigned', t => {
     const tasks = [
         // { name: 'A', points: 5 },
         { name: 'B', points: 4 },
@@ -33,6 +33,20 @@ test.only('tasks cannot be evenly assigned', t => {
         { name: 'E', points: 7 },
         { name: 'F', points: 8 },
         { name: 'G', points: 3 }
+    ];
+
+    const assignments = assignTasks(tasks, 3);
+
+    const expectedAssignments = [];
+
+    t.deepEqual(assignments, expectedAssignments);
+    t.end();
+});
+
+test('less tasks than children', t => {
+    const tasks = [
+        { name: 'A', points: 5 },
+        { name: 'B', points: 4 }
     ];
 
     const assignments = assignTasks(tasks, 3);
