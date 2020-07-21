@@ -6,15 +6,12 @@ module.exports = (tasks, childCount) => {
     const sortedTasks = tasks.slice().sort((a, b) => b.points - a.points);
     const totalPoints = sumPoints(sortedTasks);
     const pointsPerChild = totalPoints / childCount;
+    const emptyBuckets = Array.from({ length: childCount }, () => []);
 
-    const buckets = Array.from({ length: childCount }, () => []);
-    const findBucket = task => buckets.find(b => (sumPoints(b) + task.points) <= pointsPerChild);
-
-    for (const task of sortedTasks) {                
-        const bucket = findBucket(task);
-        if (!bucket) return [];
-        bucket.push(task);
-    }
-
-    return buckets; 
+    return sortedTasks.reduce((buckets, task) => {
+        if (!buckets.length) return buckets;
+        const bucketIndex = buckets.findIndex(b => sumPoints(b) + task.points <= pointsPerChild);
+        if (bucketIndex === -1) return [];
+        return Object.assign([], buckets, { [bucketIndex]: [...buckets[bucketIndex], task] });
+    }, emptyBuckets);
 };
