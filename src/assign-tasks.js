@@ -10,6 +10,7 @@ module.exports = (tasks, childCount) => {
 
     for (const task of sortedTasks) {                
         const bucket = findBucket(task);
+        if (!bucket) return [];
         bucket.push(task);
     }
 
