@@ -56,3 +56,18 @@ test('less tasks than children', t => {
     t.deepEqual(assignments, expectedAssignments);
     t.end();
 });
+
+test('tasks with zero points', t => {
+    const tasks = [
+        { name: 'A', points: 1 },
+        { name: 'B', points: 0 },
+        { name: 'C', points: 2 }
+    ];
+
+    const assignments = assignTasks(tasks, 3);
+
+    const expectedAssignments = [];
+
+    t.deepEqual(assignments, expectedAssignments);
+    t.end();
+});
