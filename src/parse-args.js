@@ -1,9 +1,9 @@
 module.exports = args => {
 
-    const assignUniqueTaskNames = tasks => {
+    const assignUniqueNames = tasks => {
         return tasks.map((task, i) => {
-            const newName = String.fromCharCode(65 + i) + task.name;
-            return { ...task, name: newName };
+            const name = String.fromCharCode(65 + i) + task.name;
+            return { ...task, name };
         });
     };
 
@@ -14,8 +14,9 @@ module.exports = args => {
     });
 
     const names = tasks.map(t => t.name);
-    const uniquelyNamed = new Set(names).size === tasks.length;
-    return uniquelyNamed ? tasks : assignUniqueTaskNames(tasks);
+    const noneBlank = names.every(n => n);
+    const allUnique = new Set(names).size === tasks.length;
+    return noneBlank && allUnique ? tasks : assignUniqueNames(tasks);
 
 };
 

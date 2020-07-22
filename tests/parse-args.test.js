@@ -54,3 +54,21 @@ test('prepends letter to name when any are not unique', t => {
     t.deepEqual(tasks, expectedTasks);
     t.end();
 });
+
+test('prepends letter to name when any are blank', t => {
+    const args = ['5', 'B4', 'C1', 'D2', 'E7', 'F8', 'G3'];
+    const tasks = parseArgs(args);
+
+    const expectedTasks = [
+        { name: 'A', points: 5 },
+        { name: 'BB', points: 4 },
+        { name: 'CC', points: 1 },
+        { name: 'DD', points: 2 },
+        { name: 'EE', points: 7 },
+        { name: 'FF', points: 8 },
+        { name: 'GG', points: 3 }
+    ];
+
+    t.deepEqual(tasks, expectedTasks);
+    t.end();
+});
