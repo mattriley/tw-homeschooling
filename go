@@ -6,8 +6,11 @@ const buildReport = require('./src/build-report');
 
 const { tasks, error } = parseArgs(process.argv.slice(2));
 
-if (error) return console.log(error);
-
-const assignments = assignTasks(tasks, 3);
-const report = buildReport(tasks, assignments);
-console.log(report);
+const start = () => {
+    const childCount = 3;
+    const assignments = assignTasks(tasks, childCount);
+    return buildReport(tasks, assignments);
+};
+    
+const output = error || start();
+console.log(output);

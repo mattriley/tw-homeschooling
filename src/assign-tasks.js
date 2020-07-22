@@ -5,7 +5,7 @@ module.exports = (tasks, childCount) => {
     const totalPoints = sumPoints(sortedTasks);
     const pointsPerChild = totalPoints / childCount;
     const emptyBuckets = Array.from({ length: childCount }, () => []);
-
+    
     return sortedTasks.reduce((buckets, task) => {
         if (!buckets.length) return buckets;
         const bucketIndex = buckets.findIndex(b => sumPoints(b) + task.points <= pointsPerChild);
