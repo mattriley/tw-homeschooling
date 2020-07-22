@@ -21,3 +21,23 @@ test('builds a success report', t => {
     t.deepEqual(report, expected);
     t.end();
 });
+
+test('builds a failure report', t => {
+    const tasks = [
+        // { name: 'A', points: 5 },
+        { name: 'B', points: 4 },
+        { name: 'C', points: 1 },
+        { name: 'D', points: 2 },
+        { name: 'E', points: 7 },
+        { name: 'F', points: 8 },
+        { name: 'G', points: 3 }
+    ];
+
+    const assignments = assignTasks(tasks, 3);
+    const report = buildReport(tasks, assignments);
+
+    const expected = 'Task B: 4 points\nTask C: 1 points\nTask D: 2 points\nTask E: 7 points\nTask F: 8 points\nTask G: 3 points\nNo!';
+
+    t.deepEqual(report, expected);
+    t.end();
+});
