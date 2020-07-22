@@ -1,4 +1,4 @@
-const sumPoints = tasks => tasks.reduce((sum, t) => sum + t.points, 0);
+const sumPoints = require('./sum-points');
 
 module.exports = (tasks, childCount) => {
     if (tasks.some(t => t.points <= 0)) return [];
