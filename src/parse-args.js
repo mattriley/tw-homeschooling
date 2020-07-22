@@ -2,8 +2,7 @@ module.exports = args => {
 
     const assignUniqueNames = tasks => {
         return tasks.map((task, i) => {
-            const name = String.fromCharCode(65 + i) + task.name;
-            return { ...task, name };
+            return { ...task, name: String.fromCharCode(65 + i) };
         });
     };
 
@@ -14,9 +13,16 @@ module.exports = args => {
     });
 
     const names = tasks.map(t => t.name);
-    const noneBlank = names.every(n => n);
-    const allUnique = new Set(names).size === tasks.length;
-    return noneBlank && allUnique ? tasks : assignUniqueNames(tasks);
+    
+    const everyBlank = names.every(n => !n);
+    if (everyBlank) return { tasks: assignUniqueNames(tasks) };
+    
+    const someBlank = names.some(n => !n);
+    if (someBlank) return { error: 'Blank name found. Tasks must be all named or unnamed.' };
 
+    const hasDuplicates = new Set(names).size !== tasks.length;
+    if (hasDuplicates) return { error: 'Duplicate names found. Task names must be unique.' };
+
+    return { tasks };
 };
 
