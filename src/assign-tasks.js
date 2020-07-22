@@ -1,8 +1,6 @@
 const sumPoints = require('./sum-points');
 
 module.exports = (tasks, childCount) => {
-    if (tasks.some(t => t.points <= 0)) return [];
-    
     const sortedTasks = tasks.slice().sort((a, b) => b.points - a.points);
     const totalPoints = sumPoints(sortedTasks);
     const pointsPerChild = totalPoints / childCount;
