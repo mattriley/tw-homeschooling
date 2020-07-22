@@ -47,11 +47,31 @@ test('combination of named and unnamed not allowed', t => {
     t.end();
 });
 
-test('prepends letter to name when any are blank', t => {
+test('duplicate names not allowed', t => {
     const args = ['A5', 'A4', 'B1', 'B2'];
     const { error } = parseArgs(args);
 
     const expectedError = 'Duplicate names found. Task names must be unique.';
+
+    t.deepEqual(error, expectedError);
+    t.end();
+});
+
+test('blank points not allowed', t => {
+    const args = ['A', 'B'];
+    const { error } = parseArgs(args);
+
+    const expectedError = 'Blank or zero points found. Points must be greater than zero.';
+
+    t.deepEqual(error, expectedError);
+    t.end();
+});
+
+test('zero points not allowed', t => {
+    const args = ['A0', 'B0'];
+    const { error } = parseArgs(args);
+
+    const expectedError = 'Blank or zero points found. Points must be greater than zero.';
 
     t.deepEqual(error, expectedError);
     t.end();

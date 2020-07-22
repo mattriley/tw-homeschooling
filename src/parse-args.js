@@ -7,13 +7,14 @@ module.exports = args => {
     };
 
     const tasks = args.map(arg => {
-        const [points] = arg.match(/\d+$/);
-        const name = arg.slice(0, -points.length).trim();
-        return { name, points: parseInt(points) };
+        const [points] = arg.match(/\d+$/) || [];
+        const name = points ? arg.slice(0, -points.length).trim() : arg;
+        return { name, points: parseInt(points || 0) };
     });
 
     const names = tasks.map(t => t.name);
-    
+    const points = tasks.map(t => t.points);
+
     const everyBlank = names.every(n => !n);
     if (everyBlank) return { tasks: assignUniqueNames(tasks) };
     
@@ -22,6 +23,9 @@ module.exports = args => {
 
     const hasDuplicates = new Set(names).size !== tasks.length;
     if (hasDuplicates) return { error: 'Duplicate names found. Task names must be unique.' };
+
+    const someZeroPoints = points.some(points => points === 0);
+    if (someZeroPoints) return { error: 'Blank or zero points found. Points must be greater than zero.' };
 
     return { tasks };
 };
