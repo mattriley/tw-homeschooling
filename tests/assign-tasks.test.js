@@ -24,6 +24,25 @@ test('assigns tasks evenly using example in problem statement', t => {
     t.end();
 });
 
+test('maintains task names even when points are the same', t => {
+    const tasks = [
+        { name: 'A', points: 1 },
+        { name: 'B', points: 1 },
+        { name: 'C', points: 1 }
+    ];
+
+    const assignments = assignTasks(tasks, 3);
+
+    const expectedAssignments = [
+        [{ name: 'A', points: 1 }], 
+        [{ name: 'B', points: 1 }], 
+        [{ name: 'C', points: 1 }]
+    ];
+
+    t.deepEqual(assignments, expectedAssignments);
+    t.end();
+});
+
 test('tasks cannot be evenly assigned when total points not divisable by child count', t => {
     const tasks = [
         { name: 'A', points: 1 },

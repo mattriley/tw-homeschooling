@@ -54,7 +54,7 @@ test('blank points not allowed', t => {
 });
 
 test('zero points not allowed', t => {
-    const args = ['A0', 'B2', 'B3'];
+    const args = ['A0', 'B2', 'C3'];
     const { error } = parseArgs(args);
     const expectedError = 'Blank or zero points found. Points must be greater than zero.';
     t.deepEqual(error, expectedError);
