@@ -4,7 +4,7 @@ ThoughtWorks Australia Shokunin 2020 July Challenge.
 
 ## Usage
 
--  Install Node.js 14.5.0 or install [NVM](https://github.com/nvm-sh/nvm) and run `nvm install`
+-  Install Node.js 14.5.0 or install [NVM](https://github.com/nvm-sh/nvm) and run `nvm i`
 -  Run: `./go A1 B2 C3`. Task names are optional and will be generated if not provided.
 -  Test: `npm t` (install dependencies first with `npm i`)
 
@@ -20,19 +20,19 @@ The parents are keen that each day each child completes the same number of point
 
 For example on Monday the teacher assigned:
 
-Task A: 5 points
-Task B: 4 points
-Task C: 1 point
-Task D: 2 points
-Task E: 7 points
-Task F: 8 points
-Task G: 3 points
+Task A: 5 points  
+Task B: 4 points  
+Task C: 1 point  
+Task D: 2 points  
+Task E: 7 points  
+Task F: 8 points  
+Task G: 3 points  
 
 These tasks can be split amongst the triplets like so:
 
-Child 1: Task D (2 points) + Task F (8 points) = 10 points
-Child 2: Task A (5 points) + Task B (4 points) + Task C (1 point) = 10 points
-Child 3: Task E (7 points) + Task G (3 points) = 10 points
+Child 1: Task D (2 points) + Task F (8 points) = 10 points  
+Child 2: Task A (5 points) + Task B (4 points) + Task C (1 point) = 10 points  
+Child 3: Task E (7 points) + Task G (3 points) = 10 points  
 
 The children cannot work on the same task. That would require the negotiation skills of a UN diplomat.
 
