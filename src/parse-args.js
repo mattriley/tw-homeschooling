@@ -1,22 +1,25 @@
 module.exports = args => {
 
-    const assignUniqueNames = tasks => {
+    const generateNames = tasks => {
         return tasks.map((task, i) => {
             return { ...task, name: String.fromCharCode(65 + i) };
         });
     };
 
-    const tasks = args.map(arg => {
+    const parsedTasks = args.map(arg => {
         const [points] = arg.match(/\d+$/) || [];
         const name = points ? arg.slice(0, -points.length).trim() : arg;
         return { name, points: parseInt(points || 0) };
     });
 
+    const shouldGenerateNames = parsedTasks.every(t => !t.name);
+    const tasks = shouldGenerateNames ? generateNames(parsedTasks) : parsedTasks;
+
+    const noTasks = tasks.length === 0;
+    if (noTasks) return { error: 'No tasks found. At least one task is required.' };
+
     const names = tasks.map(t => t.name);
     const points = tasks.map(t => t.points);
-
-    const everyBlank = names.every(n => !n);
-    if (everyBlank) return { tasks: assignUniqueNames(tasks) };
     
     const someBlank = names.some(n => !n);
     if (someBlank) return { error: 'Blank name found. Tasks must be all named or unnamed.' };

@@ -29,6 +29,14 @@ test('assigns unique task names when no names provided', t => {
     t.end();
 });
 
+test('no tasks is not allowed', t => {
+    const args = [];
+    const { error } = parseArgs(args);
+    const expectedError = 'No tasks found. At least one task is required.';
+    t.deepEqual(error, expectedError);
+    t.end();
+});
+
 test('combination of named and unnamed tasks not allowed', t => {
     const args = ['A1', '2', '3'];
     const { error } = parseArgs(args);
