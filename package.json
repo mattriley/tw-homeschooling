@@ -5,11 +5,8 @@
   "scripts": {
     "test": "tape tests/**/*.js | tap-spec"
   },
-  "dependencies": {
+  "devDependencies": {
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1"
-  },
-  "devDependencies": {
-    "eslint": "^7.5.0"
   }
 }
