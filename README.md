@@ -5,7 +5,7 @@ ThoughtWorks Australia Shokunin 2020 July Challenge.
 ## Usage
 
 -  Install Node.js 14.5.0 or install [NVM](https://github.com/nvm-sh/nvm) and run `nvm install`
--  Run: `./go`
+-  Run: `./go A1 B2 C3`. Task names are optional and will be generated if not provided.
 -  Test: `npm t` (install dependencies first with `npm i`)
 
 ## Problem Statement

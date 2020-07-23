@@ -9,7 +9,7 @@ const { tasks, error } = parseArgs(process.argv.slice(2));
 const start = () => {
     const childCount = 3;
     const assignments = assignTasks(tasks, childCount);
-    return buildReport(tasks, assignments);
+    return buildReport(childCount, tasks, assignments);
 };
     
 const output = error || start();
